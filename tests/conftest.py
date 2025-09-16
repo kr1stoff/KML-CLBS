@@ -18,7 +18,7 @@ def app():
         'DATABASE': db_path,
     })
 
-    from src.kml_clbs.db import get_db, init_db
+    from src.kml_clbs.models.db import get_db, init_db
 
     with app.app_context():
         init_db()

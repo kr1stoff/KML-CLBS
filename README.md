@@ -13,6 +13,9 @@ CLBS(Centrel Laboratory Bioinformatics Servies)
 - 运行项目
 
   ```bash
+  # 生产
+  poetry run waitress-serve --listen=0.0.0.0:5000 --call 'src.kml_clbs:create_app'
+  # 测试
   poetry run flask --app src.kml_clbs run --debug --host 0.0.0.0 --port 5000
   ```
 

@@ -3,21 +3,21 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 
-from kml_clbs.auth import login_required
-from kml_clbs.db import get_db
+from kml_clbs.routes.auth import login_required
+from kml_clbs.models.db import get_db
 
-bp = Blueprint('blog', __name__)
+bp = Blueprint('blog', __name__, url_prefix='/blog')
 
 
-@bp.route('/')
-def index():
+@bp.route('/list')
+def blog_list():
     db = get_db()
     posts = db.execute(
         'SELECT p.id, title, body, created, author_id, username'
         ' FROM post p JOIN user u ON p.author_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
-    return render_template('blog/index.html', posts=posts)
+    return render_template('blog/list.html', posts=posts)
 
 
 @bp.route('/create', methods=('GET', 'POST'))
@@ -29,7 +29,7 @@ def create():
         error = None
 
         if not title:
-            error = 'Title is required.'
+            error = '标题是必填项'
 
         if error is not None:
             flash(error)
@@ -74,7 +74,7 @@ def update(id):
         error = None
 
         if not title:
-            error = 'Title is required.'
+            error = '标题是必填项'
 
         if error is not None:
             flash(error)

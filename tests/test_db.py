@@ -1,7 +1,7 @@
 import sqlite3
 
 import pytest
-from src.kml_clbs.db import get_db
+from src.kml_clbs.models.db import get_db
 
 
 def test_get_close_db(app):

@@ -1,6 +1,6 @@
 import pytest
 from flask import g, session
-from src.kml_clbs.db import get_db
+from src.kml_clbs.models.db import get_db
 
 
 def test_register(client, app):
@@ -41,8 +41,8 @@ def test_login(client, auth):
 
 
 @pytest.mark.parametrize(('username', 'password', 'message'), (
-    ('a', 'test', b'Incorrect username.'),
-    ('test', 'a', b'Incorrect password.'),
+    ('a', 'test', '用户名不存在'),
+    ('test', 'a', '密码错误'),
 ))
 def test_login_validate_input(auth, username, password, message):
     response = auth.login(username, password)
