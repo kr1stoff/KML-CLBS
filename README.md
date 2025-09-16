@@ -23,3 +23,23 @@ CLBS(Centrel Laboratory Bioinformatics Servies)
   ```bash
   poetry run flask --app src.kml_clbs init-db
   ```
+
+- 运行测试
+  - 测试
+
+    ```bash
+    poetry run pytest
+    ```
+
+  - 测试覆盖率
+
+    ```bash
+    poetry run coverage run -m pytest
+    ```
+
+  - 测试覆盖率报告
+
+    ```bash
+    poetry run coverage html
+    ```
+  
