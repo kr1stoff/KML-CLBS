@@ -1,0 +1,7 @@
+/* 所有 .nav-link 悬停或聚焦时改变背景和文字颜色 */
+.nav-link:hover,
+.nav-link:focus {
+  background-color: #e9ecef; /* 浅灰，可换成你想要的颜色 */
+  color: #000;
+  text-decoration: none; /* 如果你移除了下划线，保留其它可视提示 */
+}

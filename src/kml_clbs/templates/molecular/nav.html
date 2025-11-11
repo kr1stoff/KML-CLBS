@@ -1,0 +1,12 @@
+{% extends 'index.html' %}{% block title %}分子{% endblock %}{% block content %}
+<div>
+  <ul class="nav nav-pills mb-auto">
+    <li>
+      <a href="{{ url_for('molecular.bcl2fastq') }}" class="nav-link ps-1">
+        <span class="me-2 text-muted" aria-hidden="true">•</span>
+        Illumina 下机数据拆分
+      </a>
+    </li>
+  </ul>
+</div>
+{% endblock %}

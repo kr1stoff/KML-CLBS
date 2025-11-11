@@ -34,4 +34,7 @@ def create_app(test_config=None):
     from .routes import auth
     app.register_blueprint(auth.bp)
 
+    from .routes import molecular
+    app.register_blueprint(molecular.bp)
+
     return app

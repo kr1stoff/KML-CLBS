@@ -1,62 +1,53 @@
-{% extends 'base.html' %} {% block title %}主页{% endblock %} {% block header %}
-{% endblock %} {% block content %}
-<div
-  class="d-flex flex-column flex-shrink-0 p-3 text-bg-light"
-  style="width: 280px; height: 80vh"
->
-  <a
-    href="/"
-    class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+{% extends 'base.html' %} {% block title %}主页{% endblock %} {% block
+header%}{% endblock %} {% block content_base %}
+<div class="d-flex" style="min-height: 80vh">
+  <!-- Sidebar -->
+  <aside
+    class="d-flex flex-column flex-shrink-0 p-3 text-bg-light"
+    style="width: 280px; height: 80vh"
   >
-    <svg class="bi pe-none me-2" width="40" height="32">
-      <use xlink:href="#bootstrap"></use>
-    </svg>
-    <span class="fs-4">导航</span>
-  </a>
-  <hr />
-  <ul class="nav nav-pills flex-column mb-auto">
-    <li class="nav-item">
-      <a href="#" class="nav-link active" aria-current="page">
-        <svg class="bi pe-none me-2" width="16" height="16">
-          <use xlink:href="#home"></use>
-        </svg>
-        PCR室
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link text-dark">
-        <svg class="bi pe-none me-2" width="16" height="16">
-          <use xlink:href="#speedometer2"></use>
-        </svg>
-        占位1
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link text-dark">
-        <svg class="bi pe-none me-2" width="16" height="16">
-          <use xlink:href="#table"></use>
-        </svg>
-        占位2
-      </a>
-    </li>
-    <li>
-      <a href="#" class="nav-link text-dark">
-        <svg class="bi pe-none me-2" width="16" height="16">
-          <use xlink:href="#grid"></use>
-        </svg>
-        占位3
-      </a>
-    </li>
-  </ul>
-  <hr />
-  <div class="dropdown">
-    <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
-      <li><a class="dropdown-item" href="#">New project...</a></li>
-      <li><a class="dropdown-item" href="#">Settings</a></li>
-      <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li><hr class="dropdown-divider" /></li>
-      <li><a class="dropdown-item" href="#">Sign out</a></li>
+    <a
+      href="/"
+      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+    >
+      <svg class="bi pe-none me-2" width="40" height="32">
+        <use xlink:href="#bootstrap"></use>
+      </svg>
+      <span class="fs-4">导航</span>
+    </a>
+    <hr />
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="{{ url_for('molecular.nav') }}" class="nav-link active" aria-current="page">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#home"></use>
+          </svg>
+          分子生物学科
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-dark">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#speedometer2"></use>
+          </svg>
+          占位
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link text-dark">
+          <svg class="bi pe-none me-2" width="16" height="16">
+            <use xlink:href="#grid"></use>
+          </svg>
+          其他
+        </a>
+      </li>
     </ul>
-  </div>
+  </aside>
+  <!-- Main content -->
+  <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
+    <!-- <h1>主区域标题</h1>
+    <p>这里放右侧页面内容。内容超过高度时会在此区域内部滚动。</p> -->
+    {% block content %}{% endblock %}
+  </main>
 </div>
 {% endblock %}

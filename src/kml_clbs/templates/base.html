@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-  <title>{% block title %}{% endblock %} - KMLCLBS</title>
-  <link
-    rel="stylesheet"
-    href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
-  />
-  <script
-    src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
-    integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
-    crossorigin="anonymous"
-  ></script>
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}{% endblock %} - KMLCLBS</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/my.css') }}"
+    />
+    <script
+      src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
+      integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
   <div class="container">
     <header
       class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom"
@@ -20,7 +28,9 @@
       >
         <h1 class="fs-1">KMLCLBS - 中心实验室生物信息服务</h1>
       </a>
-      <div class="col-md-3 text-end">
+
+      <!-- * 后续添加用户权限 -->
+      <!-- <div class="col-md-3 text-end">
         {% if g.user %}
         <font class="text-secondary me-2">{{ g.user['username'] }}</font>
         <a class="btn btn-outline-primary" href="{{ url_for('auth.logout') }}"
@@ -37,14 +47,13 @@
           注册
         </a>
         {% endif %}
-      </div>
+      </div> -->
     </header>
 
     <section class="content">
-      <header>{% block header %}{% endblock %}</header>
       {% for message in get_flashed_messages() %}
       <div class="flash">{{ message }}</div>
-      {% endfor %}{% block content %}{% endblock %}
+      {% endfor %} {% block content_base %}{% endblock %}
     </section>
   </div>
 </html>
