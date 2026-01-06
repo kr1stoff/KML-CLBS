@@ -14,7 +14,7 @@ CLBS(Centrel Laboratory Bioinformatics Servies)
   查看端口占用
 
   ```bash
-  sudo netstat -tlnp | grep -w 5000
+  netstat -tlnp | grep :5000
   ```
 
   运行

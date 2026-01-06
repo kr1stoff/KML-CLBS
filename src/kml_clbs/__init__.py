@@ -31,10 +31,7 @@ def create_app(test_config=None):
     from .routes import home
     app.register_blueprint(home.bp)
 
-    from .routes import auth
-    app.register_blueprint(auth.bp)
-
-    from .routes import molecular
-    app.register_blueprint(molecular.bp)
+    from .routes import ngs
+    app.register_blueprint(ngs.bp)
 
     return app

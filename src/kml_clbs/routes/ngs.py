@@ -1,15 +1,15 @@
 from flask import Blueprint, render_template, request
 
-bp = Blueprint('molecular', __name__, url_prefix='/molecular')
+bp = Blueprint('ngs', __name__, url_prefix='/ngs')
 
 
 @bp.route('/')
 def nav():
-    return render_template('molecular/nav.html')
+    return render_template('ngs/nav.html')
 
 
 # Illumina 下机数据拆分部分
 @bp.route('/bcl2fastq', methods=['GET', 'POST'])
 def bcl2fastq():
     
-    return render_template('molecular/bcl2fastq.html')
+    return render_template('ngs/bcl2fastq.html')

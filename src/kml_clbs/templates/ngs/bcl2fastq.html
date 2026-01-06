@@ -6,7 +6,7 @@ content %}
   <!-- 上传表单 -->
   <form
     method="post"
-    action="{{ url_for('molecular.bcl2fastq') }}"
+    action="{{ url_for('ngs.bcl2fastq') }}"
     enctype="multipart/form-data"
     class="mb-4"
   >
@@ -93,10 +93,10 @@ content %}
             not none else '-') }}
           </td>
           <td>
-            <!-- 删除按钮：使用表单 POST 到后端删除路由（需要在后端实现 molecular.delete_sample） -->
+            <!-- 删除按钮：使用表单 POST 到后端删除路由（需要在后端实现 ngs.delete_sample） -->
             <form
               method="post"
-              action="{{ url_for('molecular.delete_sample') }}"
+              action="{{ url_for('ngs.delete_sample') }}"
               class="d-inline"
             >
               {% if csrf_token is defined %}
