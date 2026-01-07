@@ -31,7 +31,7 @@ def create_app(test_config=None):
     from .routes import home
     app.register_blueprint(home.bp)
 
-    from .routes import ngs
-    app.register_blueprint(ngs.bp)
+    from .routes import pcr
+    app.register_blueprint(pcr.bp)
 
     return app

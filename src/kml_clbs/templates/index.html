@@ -1,53 +1,75 @@
-{% extends 'base.html' %} {% block title %}主页{% endblock %} {% block
-header%}{% endblock %} {% block content_base %}
-<div class="d-flex" style="min-height: 80vh">
-  <!-- Sidebar -->
-  <aside
-    class="d-flex flex-column flex-shrink-0 p-3 text-bg-light"
-    style="width: 280px; height: 80vh"
-  >
-    <a
-      href="/"
-      class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
-    >
-      <svg class="bi pe-none me-2" width="40" height="32">
-        <use xlink:href="#bootstrap"></use>
-      </svg>
-      <span class="fs-4">导航</span>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>KMLCLBS - {% block title %}主页{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/my.css') }}" />
+  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
+    integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+    crossorigin="anonymous"></script>
+</head>
+
+<div class="container">
+  <header
+    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+    <a href="/" class="d-flex align-items-center col-md-9 mb-2 mb-md-0 text-dark text-decoration-none">
+      <h1 class="fs-1">KMLCLBS - 中心实验室生物信息服务</h1>
     </a>
-    <hr />
-    <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-        <a href="{{ url_for('.nav') }}" class="nav-link active" aria-current="page">
-          <svg class="bi pe-none me-2" width="16" height="16">
-            <use xlink:href="#home"></use>
+  </header>
+
+  <section class="content">
+    {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+    {% endfor %}
+    <div class="d-flex" style="min-height: 80vh">
+      <!-- Sidebar -->
+      <aside class="d-flex flex-column flex-shrink-0 p-3 text-bg-light" style="width: 280px; height: 80vh">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32">
+            <use xlink:href="#bootstrap"></use>
           </svg>
-          分子生物学科
+          <span class="fs-4">导航</span>
         </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-dark">
-          <svg class="bi pe-none me-2" width="16" height="16">
-            <use xlink:href="#speedometer2"></use>
-          </svg>
-          占位
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-dark">
-          <svg class="bi pe-none me-2" width="16" height="16">
-            <use xlink:href="#grid"></use>
-          </svg>
-          其他
-        </a>
-      </li>
-    </ul>
-  </aside>
-  <!-- Main content -->
-  <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
-    <!-- <h1>主区域标题</h1>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="{{url_for('pcr.index')}}"
+              class="nav-link {% if request.endpoint == 'pcr.index' %}active{% endif %}">
+              <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#home"></use>
+              </svg>
+              PCR
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-dark">
+              <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#speedometer2"></use>
+              </svg>
+              NGS
+            </a>
+          </li>
+          <!-- todo 其他学科 -->
+          <!-- <li>
+            <a href="#" class="nav-link text-dark">
+              <svg class="bi pe-none me-2" width="16" height="16">
+                <use xlink:href="#grid"></use>
+              </svg>
+              占位
+            </a>
+          </li> -->
+        </ul>
+      </aside>
+      <!-- Main content -->
+      <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
+        <!-- <h1>主区域标题</h1>
     <p>这里放右侧页面内容。内容超过高度时会在此区域内部滚动。</p> -->
-    {% block content %}{% endblock %}
-  </main>
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+  </section>
 </div>
-{% endblock %}
+
+</html>
