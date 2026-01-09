@@ -32,10 +32,10 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # 路由
-    from .routes import home
-    app.register_blueprint(home.bp)
+    from .routes import home_route
+    app.register_blueprint(home_route.bp)
 
-    from .routes import pcr
-    app.register_blueprint(pcr.bp)
+    from .routes import pcr_route
+    app.register_blueprint(pcr_route.bp)
 
     return app

@@ -48,6 +48,7 @@
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
               <a
+              <!-- * home 是蓝图名, index 是 home 蓝图下的 index 函数 --></a>
                 href="{{url_for('home.index')}}"
                 class="nav-link text-dark {% if request.endpoint == 'home.index' %}active{% endif %}"
               >
@@ -59,6 +60,7 @@
             </li>
             <li class="nav-item">
               <a
+              <!-- * pcr 是蓝图名, index 是 pcr 蓝图下的 index 函数 -->
                 href="{{url_for('pcr.index')}}"
                 class="nav-link text-dark {% if request.endpoint == 'pcr.index' %}active{% endif %}"
               >
@@ -78,6 +80,7 @@
             </li>
           </ul>
         </aside>
+
         <!-- Main content -->
         <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
           {% block content %}
@@ -94,6 +97,7 @@
               >
             </p>
           </div>
+
           {% endblock %}
         </main>
       </div>

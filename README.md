@@ -63,3 +63,18 @@ CLBS(Centrel Laboratory Bioinformatics Servies)
   nginx: the configuration file /data/mengxf/GitHub/KML-CLBS/src/kml_clbs/nginx/conf.d/default.conf syntax is ok
   nginx: configuration file /data/mengxf/GitHub/KML-CLBS/src/kml_clbs/nginx/conf.d/default.conf test is successful
   ```
+
+## 清理缓存
+
+定期清理
+
+```text
+# 清理 nginx 缓存
+/data/share/clbs/var/log/nginx/access.log
+# 清理下载目录
+/data/share/clbs/downloads/
+```
+
+## 开发问题
+
+1. `jinja` 中使用 `url_for` 时, 使用的是 *蓝图名 + 函数名*, 而不是直接使用文件名, 路由名或者函数名

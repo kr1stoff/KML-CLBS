@@ -2,12 +2,13 @@
 header%}{% endblock %} {% block content %}
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="#">主页</a></li>
+    <li class="breadcrumb-item"><a href="{{url_for('home.index')}}">主页</a></li>
     <li class="breadcrumb-item active" aria-current="page">PCR</li>
   </ol>
 </nav>
 <div>
   <ul>
+    <!-- * pcr 是蓝图名, kras 是 pcr 蓝图下的 kras 函数 -->
     <li><a href="{{url_for('pcr.kras')}}">KRAS</a></li>
   </ul>
 </div>
