@@ -1,75 +1,102 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+  <!-- 头信息，包含标题、Bootstrap 样式表、自定义样式表、Bootstrap 脚本 -->
+  <head>
+    <meta charset="UTF-8" />
+    <title>KMLCLBS - {% block title %}主页{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/my.css') }}"
+    />
+    <script
+      src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
+      integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <title>KMLCLBS - {% block title %}主页{% endblock %}</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" />
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/my.css') }}" />
-  <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"
-    integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
-    crossorigin="anonymous"></script>
-</head>
-
-<div class="container">
-  <header
-    class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-    <a href="/" class="d-flex align-items-center col-md-9 mb-2 mb-md-0 text-dark text-decoration-none">
-      <h1 class="fs-1">KMLCLBS - 中心实验室生物信息服务</h1>
-    </a>
-  </header>
-
-  <section class="content">
-    {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-    {% endfor %}
-    <div class="d-flex" style="min-height: 80vh">
-      <!-- Sidebar -->
-      <aside class="d-flex flex-column flex-shrink-0 p-3 text-bg-light" style="width: 280px; height: 80vh">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <svg class="bi pe-none me-2" width="40" height="32">
-            <use xlink:href="#bootstrap"></use>
-          </svg>
-          <span class="fs-4">导航</span>
-        </a>
-        <hr />
-        <ul class="nav nav-pills flex-column mb-auto">
-          <li class="nav-item">
-            <a href="{{url_for('pcr.index')}}"
-              class="nav-link {% if request.endpoint == 'pcr.index' %}active{% endif %}">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#home"></use>
-              </svg>
-              PCR
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link text-dark">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#speedometer2"></use>
-              </svg>
-              NGS
-            </a>
-          </li>
-          <!-- todo 其他学科 -->
-          <!-- <li>
-            <a href="#" class="nav-link text-dark">
-              <svg class="bi pe-none me-2" width="16" height="16">
-                <use xlink:href="#grid"></use>
-              </svg>
-              占位
-            </a>
-          </li> -->
-        </ul>
-      </aside>
-      <!-- Main content -->
-      <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
-        <!-- <h1>主区域标题</h1>
-    <p>这里放右侧页面内容。内容超过高度时会在此区域内部滚动。</p> -->
-        {% block content %}{% endblock %}
-      </main>
-    </div>
-  </section>
-</div>
-
+  <!-- 主体内容，包含导航栏、面包屑导航、表单、消息闪现 -->
+  <div class="container-fluid">
+    <section class="content">
+      {% for message in get_flashed_messages() %}
+      <div class="flash">{{ message }}</div>
+      {% endfor %}
+      <div class="d-flex" style="min-height: 80vh">
+        <!-- 侧边栏 -->
+        <aside
+          class="d-flex flex-column flex-shrink-0 p-3 text-bg-light"
+          style="width: 280px; height: 80vh"
+        >
+          <div
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
+          >
+            <img
+              class="bi pe-none me-2"
+              width="40"
+              height="32"
+              data-v-8a9e6923=""
+              src="data:png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAKkSURBVHgB5ZZNSFRRFMf/594ZnRmZEMOPpAylVExs4cJVi1a1qKCFroSCoKhNtbBFlL4It9GmoKCVLQpdFZQLRcmQiFoFfWiSKETqaIOWOM28ezoFyfTmvXrivNn4h5n73jn3nvc797573gW2ushpWOhuPEps9mXb0gbfHg1O3DnzGmn40Hx3wynFXJ5tM5rHK6zJZ86+oRwi4g7563RQfnkXL70PJJPwIUW4IDGa/4ph8FCaHACFAomBHW72gAA4J24qw2EUAoCtpiJZs7jTHivSSygEQBLpJjYod9oN25PrN+3tOjAABh0moojTrpV+uX7T328HArBk1dUYpvM5DsL3cCw97DYmbwBsQRkOXZPLqlwnj8S7pubdxoWQB81e3Bld5KglqZ50+qSGZNKs7nqN3dQMsCx44uretsi2kiey87pc+4AHK1XVU68YOaU40dPQJ02nw2yMwYBUySGlzYysc5hAzfI7YhitEiTiHp6TsbDdErsyNQsP+V0CpRQ6hLeDjV6nZrcM/vgYKc049q+H/w6MYLQKTe1l1yfG/tcxgDqAaUN8qLzn/WM//fMJsGzI9CrY+yusied+B21yG7K8gzSuiPpWoQZ2WR+WNhrBF4DNPP/p69rBPaWREqU5GrJ1GhqLcaRmyJpewybkC4CZzIM3y59vjs74OpBsRAU7kHgpL6U4W69Ot4ZrqlfaJLMW2LRstH5RYb396NU/rzMw11tbubtqZVgxjYDplkTvI7bHEt31J1AIAP2j+IacBQ4ga2bp19eR1O0Fq64eQQLMXa6tlF153N3LMZjQJQQJINtSMqWolzuVQSOCBNDF4YRk6lkTIkWYRJAA2zPVc9IMuToZGXnQPQQJQNZohmDOEmNMKped5VqVcn2ubAPfh62ln2DB3WXAfTjyAAAAAElFTkSuQmCC"
+              class="custom-logo"
+            />
+            <span class="fs-4">KMLCLBS</span>
+          </div>
+          <hr />
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a
+                href="{{url_for('home.index')}}"
+                class="nav-link text-dark {% if request.endpoint == 'home.index' %}active{% endif %}"
+              >
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#house"></use>
+                </svg>
+                主页
+              </a>
+            </li>
+            <li class="nav-item">
+              <a
+                href="{{url_for('pcr.index')}}"
+                class="nav-link text-dark {% if request.endpoint == 'pcr.index' %}active{% endif %}"
+              >
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#home"></use>
+                </svg>
+                PCR
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link text-dark">
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#speedometer2"></use>
+                </svg>
+                NGS
+              </a>
+            </li>
+          </ul>
+        </aside>
+        <!-- Main content -->
+        <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
+          {% block content %}
+          <!-- 欢迎页内容 -->
+          <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold text-body-emphasis">
+              中心实验室生物信息服务
+            </h1>
+            <p class="lead mb-4">
+              提供 PCR 检测、NGS 分析等小工具。<br />
+              如有修改意见或其他需求，请联系
+              <a href="mailto:xiangfu.meng@kingmylab.com"
+                >xiangfu.meng@kingmylab.com</a
+              >
+            </p>
+          </div>
+          {% endblock %}
+        </main>
+      </div>
+    </section>
+  </div>
 </html>

@@ -1,5 +1,9 @@
 import os
 from flask import Flask
+import logging
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(levelname)s: %(message)s')
 
 
 def create_app(test_config=None):

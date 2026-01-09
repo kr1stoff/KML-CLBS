@@ -1,13 +1,29 @@
 {% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
 header%}{% endblock %} {% block content %}
+<!-- * 面包屑导航 -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{{url_for('home.index')}}">主页</a></li>
+    <li class="breadcrumb-item"><a href="{{url_for('pcr.index')}}">PCR</a></li>
+    <li class="breadcrumb-item active" aria-current="page">KRAS</li>
+  </ol>
+</nav>
+<!-- 表单 -->
 <form method="POST">
-    <div class="mb-3">
-        <label for="nas_path" class="form-label">NAS 路径</label>
-        <input type="text" class="form-control" id="nas_path" name="nas_path" aria-describedby="nasPathHelp">
-        <div id="nasPathHelp" class="form-text">请填写正确的 NAS
-            路径，例：\\10.128.220.21\source_data_of_kingmylab\原始记录\PCR室\1_检测项目\16_T14492504-kras(G12C)突变检测\06-样本检测\20251225
-        </div>
+  <div class="mb-3">
+    <label for="nas_path" class="form-label">NAS 路径</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nas_path"
+      name="nas_path"
+      aria-describedby="nasPathHelp"
+    />
+    <div id="nasPathHelp" class="form-text">
+      请填写正确的 NAS
+      路径，例：\\10.128.220.21\source_data_of_kingmylab\原始记录\PCR室\1_检测项目\16_T14492504-kras(G12C)突变检测\06-样本检测\20251225
     </div>
-    <button type="submit" class="btn btn-primary">提交</button>
+  </div>
+  <button type="submit" class="btn btn-primary">提交</button>
 </form>
 {% endblock %}

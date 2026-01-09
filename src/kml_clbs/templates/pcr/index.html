@@ -1,8 +1,14 @@
 {% extends 'index.html' %} {% block title %}{{title}}{% endblock %} {% block
 header%}{% endblock %} {% block content %}
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">主页</a></li>
+    <li class="breadcrumb-item active" aria-current="page">PCR</li>
+  </ol>
+</nav>
 <div>
-    <ul>
-        <li><a href="{{url_for('pcr.kras')}}">KRAS</a></li>
-    </ul>
+  <ul>
+    <li><a href="{{url_for('pcr.kras')}}">KRAS</a></li>
+  </ul>
 </div>
 {% endblock %}
