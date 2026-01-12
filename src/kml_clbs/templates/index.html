@@ -17,6 +17,7 @@
       integrity="sha384-/mhDoLbDldZc3qpsJHpLogda//BVZbgYuw6kof4u2FrCedxOtgRZDTHgHUhOCVim"
       crossorigin="anonymous"
     ></script>
+    <script src="{{ url_for('static', filename='js/chart.js') }}"></script>
   </head>
 
   <!-- 主体内容，包含导航栏、面包屑导航、表单、消息闪现 -->
@@ -47,8 +48,8 @@
           <hr />
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="nav-item">
-              <a
               <!-- * home 是蓝图名, index 是 home 蓝图下的 index 函数 --></a>
+              <a
                 href="{{url_for('home.index')}}"
                 class="nav-link text-dark {% if request.endpoint == 'home.index' %}active{% endif %}"
               >
@@ -58,9 +59,10 @@
                 主页
               </a>
             </li>
+
             <li class="nav-item">
-              <a
               <!-- * pcr 是蓝图名, index 是 pcr 蓝图下的 index 函数 -->
+              <a
                 href="{{url_for('pcr.index')}}"
                 class="nav-link text-dark {% if request.endpoint == 'pcr.index' %}active{% endif %}"
               >
@@ -70,12 +72,26 @@
                 PCR
               </a>
             </li>
+
             <li class="nav-item">
               <a href="#" class="nav-link text-dark">
                 <svg class="bi pe-none me-2" width="16" height="16">
                   <use xlink:href="#speedometer2"></use>
                 </svg>
                 NGS
+              </a>
+            </li>
+
+            <li class="nav-item ">
+              <!-- * monitor 是蓝图名, index 是 monitor 蓝图下的 index 函数 -->
+              <a
+                href="{{url_for('monitor.index')}}"
+                class="nav-link text-dark {% if request.endpoint == 'monitor.index' %}active{% endif %}"
+              >
+                <svg class="bi pe-none me-2" width="16" height="16">
+                  <use xlink:href="#bar-chart"></use>
+                </svg>
+                访问统计
               </a>
             </li>
           </ul>

@@ -1,6 +1,7 @@
 import os
-from flask import Flask
+from flask import Flask, request
 import logging
+
 
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(levelname)s: %(message)s')
@@ -37,5 +38,12 @@ def create_app(test_config=None):
 
     from .routes import pcr_route
     app.register_blueprint(pcr_route.bp)
+
+    from .routes import monitor_route
+    app.register_blueprint(monitor_route.bp)
+
+    # 启用访问日志中间件
+    from .utils.access_log_util import access_log_middleware
+    access_log_middleware(app)
 
     return app

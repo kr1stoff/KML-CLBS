@@ -32,7 +32,7 @@ def init_db():
 
 @click.command('init-db')
 def init_db_command():
-    """Clear the existing data and create new tables."""
+    """清理存在的数据并创建新表"""
     init_db()
     click.echo('Initialized the database.')
 
@@ -45,3 +45,47 @@ sqlite3.register_converter(
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+
+
+# 访问统计查询函数
+def get_total_visits():
+    """获取总访问次数"""
+    db = get_db()
+    result = db.execute('SELECT COUNT(*) as total FROM access_logs').fetchone()
+    return result['total'] if result else 0
+
+
+def get_visits_by_path():
+    """按路径分组获取访问次数"""
+    db = get_db()
+    results = db.execute(
+        'SELECT path, COUNT(*) as count FROM access_logs GROUP BY path ORDER BY count DESC'
+    ).fetchall()
+    return [dict(row) for row in results]
+
+
+def get_visits_by_day():
+    """按天分组获取访问次数"""
+    db = get_db()
+    results = db.execute(
+        "SELECT strftime('%Y-%m-%d', timestamp) as day, COUNT(*) as count "
+        'FROM access_logs GROUP BY day ORDER BY day DESC'
+    ).fetchall()
+    return [dict(row) for row in results]
+
+
+def get_visits_by_hour():
+    """按小时分组获取访问次数"""
+    db = get_db()
+    results = db.execute(
+        "SELECT strftime('%H', timestamp) as hour, COUNT(*) as count "
+        'FROM access_logs GROUP BY hour ORDER BY hour'
+    ).fetchall()
+    return [dict(row) for row in results]
+
+
+def get_unique_ips():
+    """获取唯一IP数量"""
+    db = get_db()
+    result = db.execute('SELECT COUNT(DISTINCT ip) as unique_ips FROM access_logs').fetchone()
+    return result['unique_ips'] if result else 0

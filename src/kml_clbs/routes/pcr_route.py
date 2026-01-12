@@ -19,7 +19,7 @@ def index():
 def kras():
     """
     处理KRAS数据文件夹
-    TODO 后续把任务记录在数据库
+    todo 后续把任务记录在数据库
     """
     if request.method == 'POST':
         # 从表单获取NAS路径
