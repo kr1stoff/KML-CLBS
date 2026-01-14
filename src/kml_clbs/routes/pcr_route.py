@@ -31,7 +31,7 @@ def kras():
         nginx_relative_path = kras_service(nas_path, task_id)
         # 构建Nginx路径
         # http://10.255.24.60:5001/api/downloads/test-20260109/KRAS-result-analysis.xlsx
-        nginx_path = f'http://{NGINX_IP}:{NGINX_PORT}/api{nginx_relative_path}'
+        nginx_path = f'http://{NGINX_IP}:{NGINX_PORT}/api/{nginx_relative_path}'
         # return nginx_path
         return render_template('pcr/kras.html', title='KRAS', result=nginx_path)
 

@@ -38,12 +38,12 @@ def kras_service(input_nas_path: str, task_id: str) -> str:
     result_file = work_dir.joinpath(f'{task_id}.xlsx')
     process_kras(local_dir, result_file)
     logging.info(f'KRAS数据处理完成，结果文件: {result_file}')
-    # /data/share/clbs/downloads/test-20260109/KRAS-result-analysis.xlsx
+
     # ! 删除下载目录
     rmtree(local_dir)
     logging.info(f'删除下载目录: {local_dir}')
     # 返回 nginx 相对路径
-    return str(result_file).replace(str(CLBS_DIR), '')
+    return str(result_file).replace(str(CLBS_DIR) + '/', '')
 
 
 def download_from_obs(obs_path: str, work_dir: Path) -> None:

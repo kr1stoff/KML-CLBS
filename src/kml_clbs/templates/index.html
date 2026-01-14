@@ -26,11 +26,11 @@
       {% for message in get_flashed_messages() %}
       <div class="flash">{{ message }}</div>
       {% endfor %}
-      <div class="d-flex" style="min-height: 80vh">
+      <div class="d-flex" style="min-height: 100vh">
         <!-- 侧边栏 -->
         <aside
           class="d-flex flex-column flex-shrink-0 p-3 text-bg-light"
-          style="width: 280px; height: 80vh"
+          style="width: 280px; height: 100vh"
         >
           <div
             class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none"
@@ -98,7 +98,7 @@
         </aside>
 
         <!-- Main content -->
-        <main class="flex-grow-1 p-4" style="height: 80vh; overflow: auto">
+        <main class="flex-grow-1 p-4" style="height: 100vh; overflow: auto">
           {% block content %}
           <!-- 欢迎页内容 -->
           <div class="px-4 py-5 my-5 text-center">
