@@ -4,16 +4,9 @@ from src.kml_clbs.config.path_config import DOWNLOADS_DIR, CLBS_DIR
 from subprocess import run
 from pathlib import Path
 import logging
-import pandas as pd
 from shutil import rmtree
-
-# =============== 输出结果 ===============
-# Sample			支持多样本
-# DetectionSite	    支持多位点，逗号','分隔
-# PosInControl	    阳控是否在控
-# NtcInControl	    阴控是否在控
-# SampleInControl	样本外控是否在控
-# ========================================
+import pandas as pd
+pd.set_option('future.no_silent_downcasting', True)
 
 
 logging.getLogger(__name__).setLevel(logging.DEBUG)
@@ -178,6 +171,8 @@ def process_kras(local_dir: Path, result_file: Path) -> None:
     # 获取 检测位点~样本 数据框
     df_sorted = get_details(raw_file)
     # 获取样本分型和质控信息
+    # Sample			支持多样本
+    # DetectionSite	    支持多位点，逗号','分隔
     type_res_df = get_type_results(df_sorted)
     # 输出到 Excel 文件
     with pd.ExcelWriter(result_file) as writer:
