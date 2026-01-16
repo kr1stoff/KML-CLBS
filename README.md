@@ -40,7 +40,7 @@ CLBS(Centrel Laboratory Bioinformatics Servies)
   # flask
   cd /data/mengxf/GitHub/KML-CLBS
   # 初始化数据库
-  flask --app src.kml_clbs init-db
+  poetry run flask --app src.kml_clbs init-db
   # 生产
   poetry run waitress-serve --listen=0.0.0.0:5000 --call 'src.kml_clbs:create_app'
   # 测试

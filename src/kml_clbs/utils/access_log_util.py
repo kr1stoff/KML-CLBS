@@ -16,8 +16,9 @@ def access_log_middleware(app):
         # 记录请求信息到数据库
         from src.kml_clbs.models.db import get_db
         db = get_db()
+        # 插入访问日志记录，时间调整为东八区
         db.execute(
-            'INSERT INTO access_logs (path, method, ip, user_agent, referrer, timestamp) VALUES (?, ?, ?, ?, ?, datetime(\'now\'))',
+            'INSERT INTO access_logs (path, method, ip, user_agent, referrer, timestamp) VALUES (?, ?, ?, ?, ?, datetime(\'now\', \'+8 hours\'))',
             (request.path, request.method, request.remote_addr,
              request.user_agent.string, request.referrer)
         )

@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS access_logs (
     ip TEXT NOT NULL,
     user_agent TEXT,
     referrer TEXT,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    timestamp TIMESTAMP DEFAULT (datetime('now', '+8 hours'))
 );
 
 -- 创建索引以提高查询性能
